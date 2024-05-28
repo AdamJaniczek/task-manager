@@ -1,0 +1,14 @@
+INSERT INTO task (title, description, status, due_date) VALUES ('Zrobić zabupy', 'Pamiętaj o karmie dla psa', 'TO_DO', '2024-05-30 16:00');
+INSERT INTO task (title, description, status, due_date) VALUES ('Umyć okna', 'Pamiętaj o karmie dla psa', 'TO_DO', '2024-05-29 16:00');
+INSERT INTO task (title, description, status, due_date) VALUES ('Porządki w piwnicy', 'Popraw mocowanie regału', 'IN_PROGRESS', '2024-05-29 20:00');
+INSERT INTO task (title, description, status, due_date) VALUES ('Wymiana opon', 'Przy okazji zamów wycieraczki', 'DONE', '2024-05-19 16:00');
+INSERT INTO Task (title, description, status, due_date) VALUES ('Finish report', 'Complete the financial report for Q1', 'TO_DO', '2024-06-01');
+INSERT INTO Task (title, description, status, due_date) VALUES ('Team meeting', 'Weekly team meeting to discuss progress', 'IN_PROGRESS', '2024-05-28');
+INSERT INTO Task (title, description, status, due_date) VALUES ('Code review', 'Review the new feature code submitted by John', 'TO_DO', '2024-06-03');
+INSERT INTO Task (title, description, status, due_date) VALUES ('Update website', 'Update the company website with new branding', 'IN_PROGRESS', '2024-06-05');
+INSERT INTO Task (title, description, status, due_date) VALUES ('Client call', 'Call the client to discuss the new requirements', 'TO_DO', '2024-05-29');
+INSERT INTO Task (title, description, status, due_date) VALUES ('Prepare presentation', 'Prepare the presentation for the upcoming conference', 'TO_DO', '2024-06-10');
+INSERT INTO Task (title, description, status, due_date) VALUES ('Budget review', 'Review the budget for the next quarter', 'Done', '2024-05-20');
+INSERT INTO Task (title, description, status, due_date) VALUES ('Write blog post', 'Write a blog post about the new product features', 'TO_DO', '2024-05-15');
+INSERT INTO Task (title, description, status, due_date) VALUES ('Conduct survey', 'Conduct a customer satisfaction survey', 'IN_PROGRESS', '2024-05-07');
+INSERT INTO Task (title, description, status, due_date) VALUES ('Organize workshop', 'Organize a workshop for the new interns', 'TO_DO', '2024-05-12');

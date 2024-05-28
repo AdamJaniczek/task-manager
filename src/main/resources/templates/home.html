@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Tasks</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+</head>
+<body>
+<nav th:insert="~{fragments.html :: nav}"></nav>
+<div class="container mt-3">
+    <div class="row">
+        <ol class="list-group list-group-numbered">
+            <li class="list-group-item d-flex justify-content-between align-items-start bg-info-subtle">
+                <div class="ms-2 me-auto">
+                    <span class="badge rounded-pill text-bg-info"><a href="" class="link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Do zrobienia</a></span>
+                    <div th:each="toDo : ${tasks.tasksToDo}">
+                        <a th:href="@{/edit(id=${toDo.id})}" th:text="|${toDo.getDueDateFormatter()} ${toDo.title}|" class="link-info"></a>
+                    </div>
+                </div>
+                <span class="badge rounded-pill bg-info" th:text="${tasks.tasksToDo.size()}"></span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-start bg-warning-subtle">
+                <div class="ms-2 me-auto">
+                    <span class="badge rounded-pill text-bg-warning">W trakcie</span>
+                    <div th:each="inProgress : ${tasks.tasksInProgress}">
+                        <a th:href="@{/edit(id=${inProgress.id})}" th:text="|${inProgress.getDueDateFormatter()} ${inProgress.title}|" class="link-warning"></a>
+                    </div>
+                </div>
+                <span class="badge text-bg-primary rounded-pill bg-warning" th:text="${tasks.tasksInProgress.size()}"></span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-start bg-success-subtle">
+                <div class="ms-2 me-auto">
+                    <span class="badge rounded-pill text-bg-success">Zrobione</span>
+                        <div th:each="done : ${tasks.tasksDone}">
+                            <a th:href="@{/edit(id=${done.id})}" th:text="|${done.getDueDateFormatter()} ${done.title}|" class="link-success text-decoration-line-through"></a>
+                        </div>
+                </div>
+                <span class="badge text-bg-primary rounded-pill bg-success" th:text="${tasks.tasksDone.size()}"></span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-start bg-danger-subtle">
+                <div class="ms-2 me-auto">
+                    <span class="badge rounded-pill text-bg-danger">Po terminie</span>
+                        <div th:each="deadLine : ${tasks.tasksDeadLine}">
+                            <a th:href="@{/edit(id=${deadLine.id})}" th:text="|${deadLine.getDueDateFormatter()} ${deadLine.title}|" class="link-danger"></a>
+                        </div>
+                </div>
+                <span class="badge text-bg-primary rounded-pill bg-danger" th:text="${tasks.tasksDeadLine.size()}">14</span>
+            </li>
+        </ol>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
