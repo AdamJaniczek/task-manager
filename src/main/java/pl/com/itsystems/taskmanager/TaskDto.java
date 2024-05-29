@@ -2,20 +2,20 @@ package pl.com.itsystems.taskmanager;
 
 import java.util.List;
 
-public class TaskDao {
+public class TaskDto {
     private List<Task> tasksToDo;
     private List<Task> tasksInProgress;
     private List<Task> tasksDone;
     private List<Task> tasksDeadLine;
 
-    public TaskDao(List<Task> tasksToDo, List<Task> tasksInProgress, List<Task> tasksDone, List<Task> tasksDeadLine) {
+    public TaskDto(List<Task> tasksToDo, List<Task> tasksInProgress, List<Task> tasksDone, List<Task> tasksDeadLine) {
         this.tasksToDo = tasksToDo;
         this.tasksInProgress = tasksInProgress;
         this.tasksDone = tasksDone;
         this.tasksDeadLine = tasksDeadLine;
     }
 
-    public TaskDao() {
+    public TaskDto() {
     }
 
     public List<Task> getTasksToDo() {

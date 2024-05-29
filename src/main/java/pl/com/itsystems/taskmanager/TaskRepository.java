@@ -10,6 +10,8 @@ import java.util.List;
 public interface TaskRepository extends JpaRepository<Task, Long> {
 
     public List<Task> findByStatusOrderByDueDateAsc(Status status);
+
     public List<Task> findByDueDateBeforeAndStatusNotOrderByDueDateAsc(LocalDateTime localDateTime, Status status);
+
     public List<Task> findTaskByTitleContainingIgnoreCaseOrDescriptionContainingIgnoreCase(String title, String description);
 }

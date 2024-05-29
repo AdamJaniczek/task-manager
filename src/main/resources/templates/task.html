@@ -7,7 +7,7 @@
 </head>
 <body>
 <nav th:insert="~{fragments.html :: nav}"></nav>
-<form method="post" th:action="@{/add}" th:object="${task}">
+<form method="post" th:action="@{/upsert}" th:object="${task}">
   <div class="container">
     <div class="row mb-3">
       <div class="col-auto">
@@ -43,10 +43,10 @@
           <label class="form-label">Zakończono</label>
         </div>
       </div>
-      <div class="col" th:if="${timeSpentOnTask}">
+      <div class="col" th:if="${task.timeSpentOnTask()}">
         <div class="card">
           <div class="card-body">
-            <span th:text="|${timeSpentOnTask.toHoursPart()}h ${timeSpentOnTask.toMinutesPart()}min|"></span>
+            <span th:text="|${task.timeSpentOnTask.toHoursPart()}h ${task.timeSpentOnTask.toMinutesPart()}min|"></span>
           </div>
         </div>
       </div>

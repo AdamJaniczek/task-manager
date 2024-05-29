@@ -3,6 +3,7 @@ package pl.com.itsystems.taskmanager;
 import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -19,12 +20,12 @@ public class Task {
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime dueDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @Column(columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime creationDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime completionDate;
 
     public Task() {
-        this.status = Status.TO_DO;
     }
 
     public Task(long id, String title, String description, Status status, LocalDateTime dueDate, LocalDateTime creationDate, LocalDateTime completionDate) {
@@ -97,4 +98,17 @@ public class Task {
     public void setCompletionDate(LocalDateTime completionDate) {
         this.completionDate = completionDate;
     }
+
+    public Duration timeSpentOnTask() {
+        Duration result = Duration.ZERO;
+        if (getStatus().equals(Status.DONE)) {
+            if (getCreationDate() != null) {
+                result = Duration.between(getCreationDate(), LocalDateTime.now());
+            } else {
+                return Duration.ZERO;
+            }
+        }
+        return result;
+    }
+
 }

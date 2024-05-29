@@ -19,15 +19,15 @@ public class TaskService {
         return taskRepository.findByStatusOrderByDueDateAsc(Status.TO_DO);
     }
 
-    public List<Task> tasksInProgress() {
+    public List<Task> findInProgressTasks() {
         return taskRepository.findByStatusOrderByDueDateAsc(Status.IN_PROGRESS);
     }
 
-    public List<Task> tasksDone() {
+    public List<Task> findDoneTasks() {
         return taskRepository.findByStatusOrderByDueDateAsc(Status.DONE);
     }
 
-    public List<Task> tasksFailed() {
+    public List<Task> findFailedTasks() {
         return taskRepository.findByDueDateBeforeAndStatusNotOrderByDueDateAsc(LocalDateTime.now(), Status.DONE);
     }
 
@@ -36,21 +36,25 @@ public class TaskService {
     }
 
     public void saveTask(Task task) {
+        if (task.getStatus().equals(null)) {
+            task.setStatus(Status.TO_DO);
+        }
         taskRepository.save(task);
     }
     public List<Task> searchTasks(String text) {
         return taskRepository.findTaskByTitleContainingIgnoreCaseOrDescriptionContainingIgnoreCase(text, text);
     }
 
-    public Duration timeSpentOnTask(Task task) {
-        Duration result = Duration.ZERO;
-        if (task.getStatus().equals(Status.DONE)) {
-            try {
-                result = Duration.between(task.getCreationDate(), task.getCompletionDate());
-            } catch (NullPointerException e) {
-                return result;
-            }
-        }
-        return result;
+    public TaskDto prepareTaskAggregate() {
+        List<Task> tasksToDo = tasksToDo();
+        List<Task> tasksDone = findDoneTasks();
+        List<Task> tasksInProgress = findInProgressTasks();
+        List<Task> tasksDeadLine = findFailedTasks();
+        TaskDto tasks = new TaskDto();
+        tasks.setTasksToDo(tasksToDo);
+        tasks.setTasksDeadLine(tasksDeadLine);
+        tasks.setTasksDone(tasksDone);
+        tasks.setTasksInProgress(tasksInProgress);
+        return tasks;
     }
 }

@@ -18,15 +18,7 @@ public class TaskController {
 
     @GetMapping("/")
     public String home(Model model) {
-        List<Task> tasksToDo = taskService.tasksToDo();
-        List<Task> tasksDone = taskService.tasksDone();
-        List<Task> tasksInProgress = taskService.tasksInProgress();
-        List<Task> tasksDeadLine = taskService.tasksFailed();
-        TaskDao tasks = new TaskDao();
-        tasks.setTasksToDo(tasksToDo);
-        tasks.setTasksDeadLine(tasksDeadLine);
-        tasks.setTasksDone(tasksDone);
-        tasks.setTasksInProgress(tasksInProgress);
+        TaskDto tasks = taskService.prepareTaskAggregate();
         model.addAttribute("tasks", tasks);
         model.addAttribute("task", new Task());
         return "home";
@@ -43,11 +35,7 @@ public class TaskController {
     @GetMapping("/edit")
     public String editTask(long id, Model model) {
         Optional<Task> task = taskService.findTaskById(id);
-        int timeSpentOnTask = 0;
-        if (task.isPresent()) {
-            model.addAttribute("task", task.get());
-            model.addAttribute("timeSpentOnTask", taskService.timeSpentOnTask(task.get()));
-        }
+        task.ifPresent(value -> model.addAttribute("task", value));
         return "task";
     }
 
@@ -57,7 +45,7 @@ public class TaskController {
         return "task";
     }
 
-    @PostMapping("/add")
+    @PostMapping("/upsert")
     public String saveTask(Task task) {
         taskService.saveTask(task);
         return "redirect:/";

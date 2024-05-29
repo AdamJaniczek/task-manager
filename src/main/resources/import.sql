@@ -1,5 +1,5 @@
 INSERT INTO task (title, description, status, due_date) VALUES ('Zrobić zabupy', 'Pamiętaj o karmie dla psa', 'TO_DO', '2024-05-30 16:00');
-INSERT INTO task (title, description, status, due_date) VALUES ('Umyć okna', 'Pamiętaj o karmie dla psa', 'TO_DO', '2024-05-29 16:00');
+INSERT INTO task (title, description, status, due_date) VALUES ('Umyć okna', 'Przy okazji wymień uszczelki w oknie na balkon', 'TO_DO', '2024-05-29 16:00');
 INSERT INTO task (title, description, status, due_date) VALUES ('Porządki w piwnicy', 'Popraw mocowanie regału', 'IN_PROGRESS', '2024-05-29 20:00');
 INSERT INTO task (title, description, status, due_date) VALUES ('Wymiana opon', 'Przy okazji zamów wycieraczki', 'DONE', '2024-05-19 16:00');
 INSERT INTO Task (title, description, status, due_date) VALUES ('Finish report', 'Complete the financial report for Q1', 'TO_DO', '2024-06-01');
