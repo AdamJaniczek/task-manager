@@ -40,7 +40,7 @@ public class TaskController {
     }
 
     @GetMapping("/add-task")
-    public String addTask(Model model,Task task) {
+    public String addTask(Model model, Task task) {
         model.addAttribute("task", new Task());
         return "task";
     }

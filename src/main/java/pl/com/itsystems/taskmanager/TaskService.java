@@ -2,14 +2,14 @@ package pl.com.itsystems.taskmanager;
 
 import org.springframework.stereotype.Service;
 
-import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class TaskService {
-    private TaskRepository taskRepository;
+
+    private final TaskRepository taskRepository;
 
     public TaskService(TaskRepository taskRepository) {
         this.taskRepository = taskRepository;
@@ -41,6 +41,7 @@ public class TaskService {
         }
         taskRepository.save(task);
     }
+
     public List<Task> searchTasks(String text) {
         return taskRepository.findTaskByTitleContainingIgnoreCaseOrDescriptionContainingIgnoreCase(text, text);
     }
